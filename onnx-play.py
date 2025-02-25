@@ -3,7 +3,8 @@ import time
 from funasr.utils.postprocess_utils import rich_transcription_postprocess
 from utils.model_bin import SenseVoiceSmallONNX
 
-model_path = 'iic/SenseVoiceSmall'
+home_path = os.getenv('HOME')
+model_path = f'{home_path}/.cache/modelscope/hub/models/iic/SenseVoiceSmall'
 
 # export model init
 model_bin = SenseVoiceSmallONNX(model_path)
