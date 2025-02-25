@@ -1,3 +1,4 @@
+import time
 from funasr import AutoModel
 from funasr.utils.postprocess_utils import rich_transcription_postprocess
 
@@ -14,6 +15,7 @@ model = AutoModel(
     device="cuda:0",
 )
 
+t1 = time.time()
 # en
 res = model.generate(
     input=f"./examples/test.mp3",
@@ -25,4 +27,6 @@ res = model.generate(
     merge_length_s=15,
 )
 text = rich_transcription_postprocess(res[0]["text"])
+t2 = time.time()
 print(text)
+print('time',(t2-t1) * 1000)
