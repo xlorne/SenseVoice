@@ -1,8 +1,9 @@
 import os
+import time
 from funasr.utils.postprocess_utils import rich_transcription_postprocess
 from utils.model_bin import SenseVoiceSmallONNX
 
-model_path = '/Volumes/1T/models/SenseVoice/SenseVoiceSmall'
+model_path = 'iic/SenseVoiceSmall'
 
 # export model init
 model_bin = SenseVoiceSmallONNX(model_path)
@@ -18,5 +19,8 @@ except:
 wav_or_scp = "./examples/test.mp3"
 language_list = [0]
 textnorm_list = [15]
+t1 = time.time()
 res = model_bin(wav_or_scp, language_list, textnorm_list, tokenizer=tokenizer)
 print([rich_transcription_postprocess(i) for i in res])
+t2 = time.time()
+print('time',(t2-t1) * 1000)
